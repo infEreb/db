@@ -12,6 +12,8 @@ DBType<T>::DBType(T value) : _value(value) {}
 
 template<class T>
 T DBType<T>::GetValue() { return _value; }
+template<class T>
+QString DBType<T>::GetTypeName() { return ""; }
 
 template<class T>
 bool DBType<T>::operator==(const DBType<T>& right) { return _value == right._value; }
@@ -26,6 +28,8 @@ DBDate::DBDate(const char *value) : DBType(value) { if(!Filter(value)) _value = 
 DBDate::DBDate(const QString value) : DBType(value) { if(!Filter(value)) _value = ""; }
 DBDate::DBDate(const DBDate& date) { operator=(date); }
 DBDate::~DBDate() {}
+
+QString DBDate::GetTypeName() { return "DBDate"; }
 
 DBDate& DBDate::operator=(const QString date) {
     if (Filter(date)) {

@@ -1,21 +1,25 @@
-#ifndef _DBATTRIBUTE_
-#define _DBATTRIBUTE_
+#ifndef DBATTRIBUTE_HPP
+#define DBATTRIBUTE_HPP
 
-#include <string>
+#include <QString>
 
-template<class T>
-class DBAttribute {
-    std::string _name;
-
-protected:
-    //T _value;
+class DBAttributeAbstract {
+    QString _name;
 
 public:
-    DBAttribute(std::string name);
-    ~DBAttribute();
+    DBAttributeAbstract(const QString& name);
+    virtual ~DBAttributeAbstract() = default;
 
-    std::string GetName();
-    void SetName(std::string name);    
+    QString GetName();
+    void SetName(const QString& name);
+};
+
+template<class T>
+class DBAttribute : public DBAttributeAbstract {
+
+public:
+    DBAttribute(const QString& name);
+
 };
 
 #endif

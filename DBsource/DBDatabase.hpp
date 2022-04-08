@@ -1,5 +1,5 @@
-#ifndef _DBDATABASE_
-#define _DBDATABASE_
+#ifndef DBDATABASE_HPP
+#define DBDATABASE_HPP
 
 #include <set>
 #include <map>

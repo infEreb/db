@@ -1,5 +1,5 @@
-#ifndef _DBIFILTERS_
-#define _DBIFILTERS_
+#ifndef DBIFILTERS_HPP
+#define DBIFILTERS_HPP
 
 #include <QString>
 #include <QStringList>
@@ -28,7 +28,7 @@
 #define DATE_MAX_DAY 31
 #define DATE_MIN_DAY 1
 
-// Users defines
+// User's defines
 #define NAME_MAX_SIZE 150
 #define NAME_MIN_SIZE 3
 

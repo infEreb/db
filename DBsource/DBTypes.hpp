@@ -1,5 +1,5 @@
-#ifndef _DBTYPES_
-#define _DBTYPES_
+#ifndef DBTYPES_HPP
+#define DBTYPES_HPP
 
 #include <string>
 
@@ -7,26 +7,40 @@
 
 #include "DBIFilters.hpp"
 
+typedef u_int64_t DBID;
+
+class DBTypeAbstract {
+
+protected:
+    virtual QString GetTypeName() = 0;
+
+public:
+    DBTypeAbstract();
+    virtual ~DBTypeAbstract();
+
+};
+
 template<class T>
-class DBType {
+class DBType : DBTypeAbstract {
 
 protected:
     T _value;
-    //std::string _type_name;
+
+    QString GetTypeName() override;
 
 public:
     DBType();
     DBType(T type_value);
     ~DBType();
 
-    virtual T GetValue();
-    //virtual std::string GetType();
+    T GetValue();
+
 
     bool operator == (const DBType<T>& r);
     bool operator != (const DBType<T>& r);
 };
 
-class DBVarchar : DBType<QString> {
+class DBVarchar : public DBType<QString> {
     size_t _size;
 
     void SetSize(size_t size);
@@ -35,13 +49,13 @@ public:
     DBVarchar(size_t size);
     ~DBVarchar();
 
-    QString GetValue();
+    QString GetTypeName() override;
 
     DBVarchar& operator = (const QString val);
 
 };
 
-class DBInteger : DBType<u_int16_t> {
+class DBInteger : public DBType<u_int16_t> {
 public:
     DBInteger(uint16_t value);
     ~DBInteger();
@@ -57,6 +71,8 @@ public:
     DBDate(const DBDate& date);
     ~DBDate();
 
+    QString GetTypeName() override;
+
     DBDate& operator = (const QString val);
     DBDate& operator = (const DBDate& date);
 };
@@ -68,6 +84,8 @@ public:
     DBEmail(const QString& value);
     DBEmail(const DBEmail& email);
     ~DBEmail();
+
+    QString GetTypeName() override;
 
     DBEmail& operator = (const QString& val);
     DBEmail& operator = (const DBEmail& email);

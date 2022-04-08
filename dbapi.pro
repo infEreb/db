@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    DBsource/DBAttribute.cpp \
     main.cpp \
     mainwindow.cpp \
     DBsource/DBIFilters.cpp \
@@ -20,11 +21,14 @@ SOURCES += \
 
 
 HEADERS += \
+    DBsource/DBAttribute.hpp \
+    DBsource/DBColumn.hpp \
+    DBsource/DBField.hpp \
     DBsource/DBIFilters.hpp \
+    DBsource/DBKeys.hpp \
     DBsource/DBTypes.hpp \
     DBsource/DBTable.hpp \
     DBsource/DBDatabase.hpp \
-    DBsource/DBAttribute.hpp \
     Features/Features.hpp \
     mainwindow.hpp
 
